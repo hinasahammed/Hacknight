@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <div class="container">
+        <textarea id="message" placeholder="Text here..."></textarea><br>
+    <button id="send">UPDATE BOARD</button>
+    </div>
+
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #a8dadc;
+        }
+        #message{
+            border: none;
+            border-radius: 50px;
+            width: 500px;
+        }
+        .container{
+            position: relative;
+        }
+        #send{
+            position: absolute;
+            top: 70px;
+            left: 200px;
+            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            background: #457b9d;
+        }
+        #send:hover{
+            background-color: #1d3557;
+            color: #fff;
+        }
+    </style>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        document.getElementById("send").addEventListener("click",function(){
+
+            let txt = document.getElementById("message").value;
+            socket.emit("message",txt);
+                });
+    </script>
+</body>
+</html>
